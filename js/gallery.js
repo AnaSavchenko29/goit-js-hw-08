@@ -97,7 +97,13 @@ function onImageClick(event) {
   const instance = basicLightbox.create(
     ` <div class="modal">
           <img src="${largeImg}" alt="${imageAlt}">
-      </div>`
+      </div>`,
+    {
+      onShow: (instance) => {
+        const modalImg = instance.element().querySelector("img");
+        modalImg.addEventListener("click", () => instance.close());
+      },
+    }
   );
 
   instance.show();
